@@ -1,9 +1,9 @@
 # CV3 기술과제
 
-프론트엔드 : React + Zustand
-백엔드 : Express + Sequelize
-데이터베이스 : MySQL
-크롤링 : axios + JSON
+- 프론트엔드 : React + Zustand
+- 백엔드 : Express + Sequelize
+- 데이터베이스 : MySQL
+- 크롤링 : axios + JSON
 
 ## 폴더 구조
 
