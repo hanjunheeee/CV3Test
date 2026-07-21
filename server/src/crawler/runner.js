@@ -1,4 +1,5 @@
 import { createApiClient, signIn } from './auth.js';
+import { buildCategoryMap } from './categoryResolver.js';
 import { LIST_TYPES } from './constants.js';
 import { fetchRankingList } from './fetcher.js';
 import { parseRankingList } from './parser.js';
@@ -18,8 +19,12 @@ export async function runCrawler(credentials) {
     await delay(300);
     const homeshoppingResponse = await fetchRankingList(client, LIST_TYPES.homeshopping);
 
+    const labangCids = labangResponse.list?.map((item) => item.cid) ?? [];
+    const categoryMap = await buildCategoryMap(client, labangCids);
+    await delay(300);
+
     const rankings = [
-      ...parseRankingList(labangResponse, LIST_TYPES.labang),
+      ...parseRankingList(labangResponse, LIST_TYPES.labang, categoryMap),
       ...parseRankingList(homeshoppingResponse, LIST_TYPES.homeshopping),
     ];
 

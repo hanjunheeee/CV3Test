@@ -40,8 +40,11 @@ function resolveCompany(item) {
   return platformId.slice(0, 45) || '미상';
 }
 
-function resolveClassification(item) {
+function resolveClassification(item, categoryMap) {
   if (item.cat?.cat_name) return item.cat.cat_name.slice(0, 45);
+  if (item.cid && categoryMap?.has(item.cid)) {
+    return categoryMap.get(item.cid);
+  }
   return '미분류';
 }
 
@@ -60,7 +63,7 @@ function resolveSourceUrl(item, type) {
   return `https://live.ecomm-data.com/report/${path}/${objectId}`;
 }
 
-function mapListItem(item, type, rank) {
+function mapListItem(item, type, rank, categoryMap) {
   const broadcastRaw =
     type === 'hs' ? item.hsshow_datetime_start : item.datetime_start;
 
@@ -69,7 +72,7 @@ function mapListItem(item, type, rank) {
     rank,
     title: resolveTitle(item, type),
     company: resolveCompany(item),
-    classification: resolveClassification(item),
+    classification: resolveClassification(item, categoryMap),
     broadcastAt: parseBroadcastAt(broadcastRaw),
     viewCount: item.visit_cnt ?? null,
     salesVolume: item.sales_cnt ?? null,
@@ -79,9 +82,9 @@ function mapListItem(item, type, rank) {
   };
 }
 
-export function parseRankingList({ list = [] }, type) {
+export function parseRankingList({ list = [] }, type, categoryMap = new Map()) {
   return list
     .slice(0, RANKING_LIMIT)
-    .map((item, index) => mapListItem(item, type, index + 1))
+    .map((item, index) => mapListItem(item, type, index + 1, categoryMap))
     .filter((item) => item.title && item.broadcastAt);
 }
