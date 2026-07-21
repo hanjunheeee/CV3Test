@@ -43,3 +43,8 @@ export async function deleteRanking(id) {
 export async function bulkCreateRankings(rankings) {
   return HomeshoppingRanking.bulkCreate(rankings, { ignoreDuplicates: true });
 }
+
+export async function replaceAllRankings(rankings) {
+  await HomeshoppingRanking.destroy({ where: {} });
+  return HomeshoppingRanking.bulkCreate(rankings);
+}

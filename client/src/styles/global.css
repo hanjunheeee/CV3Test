@@ -87,3 +87,134 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.ranking-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kind-toggle {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.kind-toggle__button {
+  min-width: 88px;
+  padding: 10px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #fff;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kind-toggle__button.is-active {
+  border-color: #f4b942;
+  background: #fff8e7;
+  color: #111827;
+  box-shadow: inset 0 0 0 1px #f4b942;
+}
+
+.ranking-table-wrap {
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid #eceff3;
+  border-radius: 12px;
+}
+
+.ranking-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+.ranking-table th,
+.ranking-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #eef2f7;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.ranking-table th {
+  color: #667085;
+  font-weight: 600;
+  background: #fff;
+}
+
+.ranking-table__rank {
+  width: 48px;
+  color: #f4b942;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.ranking-table__info {
+  min-width: 280px;
+}
+
+.ranking-table__title {
+  margin: 0 0 4px;
+  color: #111827;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.ranking-table__company {
+  margin: 0;
+  color: #98a2b3;
+  font-size: 13px;
+}
+
+.ranking-table__metric {
+  min-width: 110px;
+}
+
+.ranking-table__count {
+  text-align: center;
+}
+
+.ranking-table__message {
+  padding: 24px 0;
+  color: #667085;
+}
+
+.metric-locked {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 20px;
+}
+
+.metric-locked__icon {
+  display: block;
+  width: 18px;
+  height: 12px;
+  border: 2px solid #667085;
+  border-top: 0;
+  position: relative;
+}
+
+.metric-locked__icon::before,
+.metric-locked__icon::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  width: 2px;
+  height: 6px;
+  background: #667085;
+}
+
+.metric-locked__icon::before {
+  left: 2px;
+}
+
+.metric-locked__icon::after {
+  right: 2px;
+}

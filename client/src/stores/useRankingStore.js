@@ -3,13 +3,18 @@ import { rankingApi } from '../api/rankingApi';
 
 export const useRankingStore = create((set, get) => ({
   rankings: [],
+  hsKind: '라방',
   loading: false,
   error: null,
 
+  setHsKind: (hsKind) => set({ hsKind }),
+
   fetchRankings: async (hsKind) => {
-    set({ loading: true, error: null });
+    const kind = hsKind ?? get().hsKind;
+
+    set({ loading: true, error: null, hsKind: kind });
     try {
-      const rankings = await rankingApi.getAll(hsKind);
+      const rankings = await rankingApi.getAll(kind);
       set({ rankings, loading: false });
     } catch (error) {
       set({ error: error.message, loading: false });

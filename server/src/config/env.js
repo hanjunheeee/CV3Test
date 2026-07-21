@@ -11,4 +11,8 @@ export const env = {
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
   },
+  crawl: {
+    email: process.env.CRAWL_LOGIN_EMAIL || '',
+    password: process.env.CRAWL_LOGIN_PASSWORD || '',
+  },
 };

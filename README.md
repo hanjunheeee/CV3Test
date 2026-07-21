@@ -1,8 +1,9 @@
-# 씨브이쓰리 기술과제
+# CV3 기술과제
 
-프론트엔드 : React + Zustand  
-백엔드 : Express + Sequelize 
-데이터베이스 : MySQL
+- 프론트엔드 : React + Zustand
+- 백엔드 : Express + Sequelize
+- 데이터베이스 : MySQL
+- 크롤링 : axios + JSON
 
 ## 폴더 구조
 
@@ -15,6 +16,7 @@
 
 - Node.js 18+
 - MySQL 8.x (Windows: MySQL80 서비스)
+- `server/.env`에 라방바 데이터랩 크롤링용 계정 정보 및 MySQL 접속 정보 작성 필요
 
 ## 설치 및 실행
 
@@ -28,7 +30,8 @@ npm install
 
 ### 2. 환경 변수 설정
 
-`server/.env`에서 DB_PASSWORD 작성(실행 단순화를 위해 .env파일을 일부러 gitignore에서 제외 시켰습니다):
+`server/.env`에서 MySQL 접속 정보 + 라방바 데이터랩 사이트 로그인 정보를 추가합니다.
+(실행 단순화를 위해 .env파일을 일부러 gitignore에서 제외 시켰습니다) 
 
 ```env
 DB_HOST=localhost
@@ -37,6 +40,9 @@ DB_NAME=cv3_homeshopping_db
 DB_USER=root
 DB_PASSWORD="your_password"
 PORT=5000
+
+CRAWL_LOGIN_EMAIL=your_email@example.com
+CRAWL_LOGIN_PASSWORD="your_crawl_password"
 ```
 
 ### 3. MySQL 서버 실행 (Windows)
@@ -53,25 +59,25 @@ npm run dev
 
 `npm run dev` 실행 시 자동으로:
 
-1. `cv3_homeshopping_db` 데이터베이스 스키마 생성 (없을 경우)
-2. `homeshopping_rankings` 테이블 생성 (`sequelize.sync()`)
-3. 백엔드 + 프론트 동시 실행
+1. `cv3_homeshopping_db` 데이터베이스 생성 (없을 경우)
+2. 크롤링 실행 (`sign_in` → `list` API → DB 저장)
+3. `homeshopping_rankings` 테이블 생성 (`sequelize.sync()`)
+4. 백엔드 + 프론트 동시 실행
 
 | 서비스 | URL |
 |--------|-----|
 | 프론트 | http://localhost:5173 |
 | 백엔드 | http://localhost:5000 |
-| 헬스체크 | http://localhost:5000/api/health |
 
 ## 크롤링
+
+`npm run dev` 실행 시 자동으로 크롤링됩니다. 크롤링만 따로 실행하려면:
 
 ```bash
 npm run crawl
 ```
 
-DB가 없으면 자동 생성 후 크롤링을 실행합니다.
-
-## 개별 실행
+## 개별 실행(필요 시)
 
 ```bash
 npm run dev:server
