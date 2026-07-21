@@ -1,7 +1,7 @@
 # CV3 기술과제
 
-프론트엔드 : React + Zustand  
-백엔드 : Express + Sequelize 
+프론트엔드 : React + Zustand
+백엔드 : Express + Sequelize
 데이터베이스 : MySQL
 크롤링 : axios + JSON
 
@@ -16,7 +16,7 @@
 
 - Node.js 18+
 - MySQL 8.x (Windows: MySQL80 서비스)
-- 라방바 데이터랩 로그인 상태 유지 필요(별도 APi가 없어서 서버 실행 할때마다 크롤링해서 데이터 가져오도록 설계했습니다..)
+- 라방바 데이터랩 로그인 상태 유지 필요(별도 APi가 없어서 서버 실행 할때마다 크롤링해서 데이터 가져오도록 설계했습니다.)
 
 ## 설치 및 실행
 
