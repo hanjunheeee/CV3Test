@@ -23,27 +23,6 @@ export async function getRankingById(id) {
   return HomeshoppingRanking.findByPk(id);
 }
 
-export async function createRanking(data) {
-  return HomeshoppingRanking.create(data);
-}
-
-export async function updateRanking(id, data) {
-  const ranking = await HomeshoppingRanking.findByPk(id);
-  if (!ranking) return null;
-  return ranking.update(data);
-}
-
-export async function deleteRanking(id) {
-  const ranking = await HomeshoppingRanking.findByPk(id);
-  if (!ranking) return null;
-  await ranking.destroy();
-  return ranking;
-}
-
-export async function bulkCreateRankings(rankings) {
-  return HomeshoppingRanking.bulkCreate(rankings, { ignoreDuplicates: true });
-}
-
 export async function replaceAllRankings(rankings) {
   await HomeshoppingRanking.destroy({ where: {} });
   return HomeshoppingRanking.bulkCreate(rankings);

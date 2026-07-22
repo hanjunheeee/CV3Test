@@ -14,7 +14,6 @@ async function request(path, options = {}) {
     throw new Error(error.message || 'API request failed');
   }
 
-  if (response.status === 204) return null;
   return response.json();
 }
 
@@ -23,8 +22,4 @@ export const rankingApi = {
     const query = hsKind ? `?hsKind=${encodeURIComponent(hsKind)}` : '';
     return request(`/rankings${query}`);
   },
-  getById: (id) => request(`/rankings/${id}`),
-  create: (data) => request('/rankings', { method: 'POST', body: JSON.stringify(data) }),
-  update: (id, data) => request(`/rankings/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
-  delete: (id) => request(`/rankings/${id}`, { method: 'DELETE' }),
 };

@@ -16,7 +16,6 @@
 
 - Node.js 18+
 - MySQL 8.x (Windows: MySQL80 서비스)
-- `server/.env`에 라방바 데이터랩 크롤링용 계정 정보 및 MySQL 접속 정보 작성 필요
 
 ## 설치 및 실행
 
